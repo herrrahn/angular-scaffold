@@ -1,0 +1,18 @@
+{
+   "personnel": [
+     {
+       "pers_id": 10,
+       "full_name": "Rafael Rahn",
+       "email": "rafael.rahn@lex-com.net",
+       "birthday": "",
+       "pers_type": "Employer"
+     },
+     {
+       "pers_id": 11,
+       "full_name": "Helmut Rahn",
+       "email": "helmut.rahn@lex-com.net",
+       "birthday": "",
+       "pers_type": "Customer"
+     }
+  ]
+}

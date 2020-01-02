@@ -1,0 +1,19 @@
+<div class="clr-row">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+    <div class="card" *ngFor="let p of personnelList">
+      <div class="card-header">
+        {{p.name}}
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          Details
+        </div>
+        <div class="card-text">
+          Email: {{p.email}} <br>
+          Type: {{p.type}} <br>
+          Age: {{p.yearsOld}} <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
