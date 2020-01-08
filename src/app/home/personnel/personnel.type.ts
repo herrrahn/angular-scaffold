@@ -1,3 +1,3 @@
 export enum PersonnelType {
-  CUSTOMER = 'Customer', EMPLOYER = 'Employer'
+  CUSTOMER = 'CUSTOMER', EMPLOYER = 'EMPLOYER'
 }

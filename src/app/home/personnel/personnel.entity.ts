@@ -1,6 +1,6 @@
 import {PersonnelType} from './personnel.type';
 
-export interface PersonnelEntity {
+export class PersonnelEntity {
   pers_id: number;
   full_name: string;
   email: string;

@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {PersonnelEntity} from './personnel.entity';
 import {Injectable} from '@angular/core';
-import {of} from 'rxjs';
 
+const API_URL = 'http://localhost:8080/personnel';
 @Injectable()
 export class PersonnelService {
   constructor(private http: HttpClient) {
@@ -10,16 +10,14 @@ export class PersonnelService {
   }
 
   loadPersonnel(): Promise<PersonnelEntity[]> {
+    return this.http.get<PersonnelEntity[]>(API_URL).toPromise();
+  }
 
-    const promise = new Promise<PersonnelEntity[]>((resolve, reject) => {
-      this.http.get<PersonnelEntity[]>('./assets/personnel.json')
-        .toPromise()
-        .then(
-          res => { // Success
-            resolve(res['personnel']);
-          }
-        );
-    });
-    return promise;
+  addPersonnel(p: PersonnelEntity): Promise<PersonnelEntity> {
+    return this.http.post<PersonnelEntity>(API_URL, p).toPromise();
+  }
+
+  delete(id: number): Promise<boolean> {
+    return this.http.delete<boolean>(`${API_URL}/${id}`).toPromise();
   }
 }

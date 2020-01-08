@@ -19,8 +19,30 @@ export class PersonnelViewController {
     personnel.id = p.pers_id;
     personnel.type = p.pers_type;
     personnel.birthday = p.birthday;
-    personnel.yearsOld = 36;
+    personnel.yearsOld = Math.floor(Math.random() * 10) + 25;
     return personnel;
   }
 
+  async addPersonnel(p: PersonnelEntity): Promise<PersonnelViewModel> {
+    return this.toViewModel(await this.personnelService.addPersonnel(p));
+  }
+
+  async delete(id: number) {
+    return await this.personnelService.delete(id);
+  }
+
+
+  findFirstName(): string {
+    const names = ['Rafael', 'Ronaldo', 'Ben', 'Paul', 'Anna', 'Mia', 'Sofia', 'Carlo', 'Luis'];
+    return this.sortName(names);
+  }
+
+  findLastName(): string {
+    const names = ['Rahn', 'Klemz', 'Becker', 'Schmidt', 'Schneider', 'Fischer', 'Weber', 'Meyer', 'Wagner'];
+    return this.sortName(names);
+  }
+
+  private sortName(names: string[]) {
+    return names[Math.floor(Math.random() * 10)];
+  }
 }
