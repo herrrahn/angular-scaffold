@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonnelViewController} from './personnel.view-controller';
 import {PersonnelViewModel} from './personnel.view-model';
-import {PersonnelEntity} from './personnel.entity';
-import {PersonnelType} from './personnel.type';
 
 @Component({
   selector: 'app-personnel',

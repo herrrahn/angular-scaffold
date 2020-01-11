@@ -6,8 +6,6 @@ import {PersonnelBuilder} from './personnel.builder';
 
 @Injectable()
 export class PersonnelViewController {
-  // tslint:disable-next-line:variable-name
-  private _personnelList: PersonnelViewModel[] = [];
 
   constructor(private personnelService: PersonnelService,
               private personnelBuilder: PersonnelBuilder) {
