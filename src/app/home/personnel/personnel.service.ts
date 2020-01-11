@@ -3,6 +3,7 @@ import {PersonnelEntity} from './personnel.entity';
 import {Injectable} from '@angular/core';
 
 const API_URL = 'http://localhost:8080/personnel';
+
 @Injectable()
 export class PersonnelService {
   constructor(private http: HttpClient) {

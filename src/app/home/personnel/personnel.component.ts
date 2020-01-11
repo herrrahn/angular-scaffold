@@ -21,29 +21,14 @@ export class PersonnelComponent implements OnInit {
 
   async load() {
     this.personnelList = await this.personnelViewController.loadPersonnel();
-    console.log(this.personnelList);
   }
 
   async addPersonnel() {
-    this.personnelList.push(await this.personnelViewController.addPersonnel(this.buildPersonnel()));
-  }
-
-  private buildPersonnel() {
-    const p: PersonnelEntity = new PersonnelEntity();
-    const firstName = this.personnelViewController.findFirstName();
-    const lastName = this.personnelViewController.findLastName();
-
-    p.full_name = `${firstName} ${lastName}`;
-    p.birthday = new Date();
-    p.pers_type = PersonnelType.CUSTOMER;
-    p.pers_id = Math.random() * 1000;
-    p.email = `${firstName.toLowerCase()}@${lastName.toLowerCase()}.de`;
-    return p;
+    this.personnelList.push(await this.personnelViewController.addPersonnel(this.personnelViewController.buildPersonnel()));
   }
 
   async delete(id: number) {
-    if (await this.personnelViewController.delete(id)) {
-      this.load();
-    }
+    await this.personnelViewController.delete(id);
+    this.load();
   }
 }

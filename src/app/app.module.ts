@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { PersonnelDetailsComponent } from './home/personnel/personnel-details/personnel-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    PersonnelDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,14 +2,19 @@ import {PersonnelService} from './personnel.service';
 import {PersonnelViewModel} from './personnel.view-model';
 import {PersonnelEntity} from './personnel.entity';
 import {Injectable} from '@angular/core';
+import {PersonnelBuilder} from './personnel.builder';
 
 @Injectable()
 export class PersonnelViewController {
-  constructor(private personnelService: PersonnelService) {
+  // tslint:disable-next-line:variable-name
+  private _personnelList: PersonnelViewModel[] = [];
+
+  constructor(private personnelService: PersonnelService,
+              private personnelBuilder: PersonnelBuilder) {
   }
 
   async loadPersonnel(): Promise<PersonnelViewModel[]> {
-     return (await this.personnelService.loadPersonnel()).map(p => this.toViewModel(p));
+    return (await this.personnelService.loadPersonnel()).map(p => this.toViewModel(p));
   }
 
   toViewModel(p: PersonnelEntity): PersonnelViewModel {
@@ -27,22 +32,12 @@ export class PersonnelViewController {
     return this.toViewModel(await this.personnelService.addPersonnel(p));
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<boolean> {
     return await this.personnelService.delete(id);
   }
 
 
-  findFirstName(): string {
-    const names = ['Rafael', 'Ronaldo', 'Ben', 'Paul', 'Anna', 'Mia', 'Sofia', 'Carlo', 'Luis'];
-    return this.sortName(names);
-  }
-
-  findLastName(): string {
-    const names = ['Rahn', 'Klemz', 'Becker', 'Schmidt', 'Schneider', 'Fischer', 'Weber', 'Meyer', 'Wagner'];
-    return this.sortName(names);
-  }
-
-  private sortName(names: string[]) {
-    return names[Math.floor(Math.random() * 10)];
+  buildPersonnel(): PersonnelEntity {
+    return this.personnelBuilder.build();
   }
 }
