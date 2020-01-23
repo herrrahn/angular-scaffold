@@ -7,6 +7,7 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { PersonnelDetailsComponent } from './home/personnel/personnel-details/personnel-details.component';
+import {CustomerModule} from './home/customer/customer.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PersonnelDetailsComponent } from './home/personnel/personnel-details/pe
     BrowserModule,
     AppRoutingModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

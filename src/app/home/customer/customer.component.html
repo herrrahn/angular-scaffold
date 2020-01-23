@@ -1,0 +1,26 @@
+<div style="margin-left: 20px; margin-top: 20px">
+  <ul *ngFor="let customer of customers" class="list">
+    <li>Id: {{customer.id}} Name: {{customer.fullName}} email: {{customer.email}}</li>
+  </ul>
+
+  <form [formGroup]="form" clrForm clrlayout="horizontal" class="clr-form clr-form-horizontal">
+
+    <clr-input-container>
+      <label for="storage_type">Id</label>
+      <input clrInput formControlName="cust_id" required/>
+
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Full name</label>
+      <input clrInput formControlName="full_name" required/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>email</label>
+      <input clrInput formControlName="email" required/>
+    </clr-input-container>
+
+  </form>
+  <button [disabled]="form.invalid" class="btn btn-primary" (click)="save()">save</button>
+</div>
