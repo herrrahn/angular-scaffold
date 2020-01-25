@@ -16,7 +16,7 @@ export class CustomerService {
 
     return this.http.get<CustomerEntity[]>(API_URL)
       .pipe(
-        tap( () => {}, error => console.log('e:', error))
+       // tap( () => {}, error => console.log('e:', error))
       )
       .toPromise();
 

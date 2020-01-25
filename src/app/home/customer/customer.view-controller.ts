@@ -24,7 +24,9 @@ export class CustomerViewController {
   }
 
   async save(form: FormGroup) {
-    return await this.customerService.save(form.value);
+    return await this.customerService
+      .save(form.value)
+      .catch( reason => console.log(reason));
   }
 
   private toViewModel(entity: CustomerEntity) {
