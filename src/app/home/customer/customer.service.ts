@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
 import {CustomerEntity} from './customer.entity';
 import {FormGroup} from '@angular/forms';
 
@@ -12,17 +11,21 @@ export class CustomerService {
 
   }
 
-  load(): Promise<CustomerEntity[]> {
-
+  loadAll(): Promise<CustomerEntity[]> {
     return this.http.get<CustomerEntity[]>(API_URL)
-      .pipe(
-       // tap( () => {}, error => console.log('e:', error))
-      )
       .toPromise();
-
   }
 
-  async save(form: FormGroup) {
-     return this.http.post(API_URL, form).toPromise();
+  load(id: number): Promise<CustomerEntity> {
+    return this.http.get<CustomerEntity>(`${API_URL}/${id}`)
+      .toPromise();
+  }
+
+  async saveForm(form: FormGroup) {
+    return this.http.post(API_URL, form).toPromise();
+  }
+
+  async save(entity: CustomerEntity) {
+    return this.http.post(API_URL, entity).toPromise();
   }
 }

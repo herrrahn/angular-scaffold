@@ -1,26 +1,23 @@
 <div style="margin-left: 20px; margin-top: 20px">
   <ul *ngFor="let customer of customers" class="list">
-    <li>Id: {{customer.id}} Name: {{customer.fullName}} email: {{customer.email}}</li>
+    <li>Id: <a class="link-hovered" (click)="find(customer.id)"> {{customer.id}} Name: {{customer.fullName}} email: {{customer.email}} </a></li>
   </ul>
 
-  <form [formGroup]="form" clrForm clrlayout="horizontal" class="clr-form clr-form-horizontal">
+  <form [formGroup]="form" clrlayout="horizontal" class="clr-form clr-form-horizontal">
 
-    <clr-input-container>
       <label for="storage_type">Id</label>
-      <input clrInput formControlName="cust_id" required/>
+      <input clrInput formControlName="id" required/>
 
-    </clr-input-container>
 
-    <clr-input-container>
       <label>Full name</label>
-      <input clrInput formControlName="full_name" required/>
-    </clr-input-container>
+      <input clrInput formControlName="fullName" required/>
 
-    <clr-input-container>
+
       <label>email</label>
       <input clrInput formControlName="email" required/>
-    </clr-input-container>
+
 
   </form>
+  <button class="btn btn-primary" (click)="find(0)">Find</button>
   <button [disabled]="form.invalid" class="btn btn-primary" (click)="save()">save</button>
 </div>

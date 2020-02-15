@@ -11,22 +11,34 @@ export class CustomerViewController {
               private formBuilder: FormBuilder) {
 
   }
-  createCustomerFormGroup(): FormGroup {
+
+  createCustomerFormGroup(customerViewModel: CustomerViewModel): FormGroup {
     return this.formBuilder.group({
-      cust_id: ['', [Validators.required]],
-      full_name: ['', [Validators.required]],
-      email: ['', [Validators.required]]
+      id: [customerViewModel.id, [Validators.required]],
+      fullName: [customerViewModel.fullName, [Validators.required]],
+      email: [customerViewModel.email, [Validators.required]]
     });
   }
 
-  async load(): Promise<CustomerViewModel[]> {
-    return (await this.customerService.load()).map( c => this.toViewModel(c));
+  async load(id: number): Promise<CustomerViewModel> {
+    return this.toViewModel(await this.customerService.load(id));
   }
 
-  async save(form: FormGroup) {
-    return await this.customerService
-      .save(form.value)
-      .catch( reason => console.log(reason));
+  async loadAll(): Promise<CustomerViewModel[]> {
+    return (await this.customerService.loadAll()).map(c => this.toViewModel(c));
+  }
+
+  async save(customerViewModel: CustomerViewModel) {
+    console.log(customerViewModel);
+    return await this.customerService.save(this.toEntity(customerViewModel));
+  }
+
+  private toEntity(customerViewModel: CustomerViewModel): CustomerEntity {
+    const entity: CustomerEntity = new CustomerEntity();
+    entity.cust_id = customerViewModel.id;
+    entity.full_name = customerViewModel.fullName;
+    entity.email = customerViewModel.email;
+    return entity;
   }
 
   private toViewModel(entity: CustomerEntity) {

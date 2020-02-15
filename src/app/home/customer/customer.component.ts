@@ -14,18 +14,20 @@ export class CustomerComponent implements OnInit {
 
   form: FormGroup;
   customers: CustomerViewModel[];
+  customer: CustomerViewModel = new CustomerViewModel();
 
   constructor(private customerViewController: CustomerViewController,
               public dialog: MatDialog) {
   }
 
   async ngOnInit() {
-    this.form = this.customerViewController.createCustomerFormGroup();
+    this.form = this.customerViewController.createCustomerFormGroup(this.customer);
     this.load();
   }
 
   async load() {
-    this.customers = await this.customerViewController.load();
+    this.customers = await this.customerViewController.loadAll();
+    this.form.patchValue(this.customer);
   }
 
   async save() {
@@ -39,13 +41,22 @@ export class CustomerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         console.log('let do this.');
-        await this.customerViewController.save(this.form);
+        this.customer = Object.assign({}, this.form.value);
+        await this.customerViewController.save(this.customer);
         this.load();
       } else {
         console.log('Maybe later');
       }
     });
   }
-
-
+  
+  async find(id: number) {
+    if (!id) {
+      console.log('id');
+      id = this.form.controls.id.value;
+    }
+    this.customer = await this.customerViewController.load(id);
+    this.form.patchValue(this.customer);
+    console.log(this.customer);
+  }
 }
