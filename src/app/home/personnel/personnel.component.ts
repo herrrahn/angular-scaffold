@@ -8,7 +8,7 @@ import {PersonnelViewModel} from './personnel.view-model';
   styleUrls: ['./personnel.component.scss']
 })
 export class PersonnelComponent implements OnInit {
-  private personnelList: PersonnelViewModel[];
+  personnelList: PersonnelViewModel[];
 
   constructor(private personnelViewController: PersonnelViewController) {
   }
