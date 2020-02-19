@@ -13,7 +13,7 @@ export class PersonnelService {
 
   loadPersonnel(): Promise<PersonnelEntity[]> {
 
-    return this.http.get<PersonnelEntity[]>(API_URL)
+    return this.http.get<PersonnelEntity[]>('./assets/personnel.json')
       .pipe(
         tap( () => {}, error => console.log('e:', error))
       )

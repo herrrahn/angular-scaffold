@@ -12,6 +12,7 @@ export class PersonnelViewController {
   }
 
   async loadPersonnel(): Promise<PersonnelViewModel[]> {
+    console.log(await this.personnelService.loadPersonnel());
     return (await this.personnelService.loadPersonnel()).map(p => this.toViewModel(p));
   }
 
