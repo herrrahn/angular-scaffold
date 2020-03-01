@@ -1,0 +1,9 @@
+<button class="btn btn-primary" (click)="requestToken()">Request token</button>
+<button class="btn btn-primary-outline" (click)="refreshToken()">Refresh token</button>
+<button class="btn btn-success" (click)="testToken()">Test token</button>
+<hr>
+Token validity: {{tokenValidity}}
+<hr>
+Token: <br>
+{{writeToken(token)}}
+<hr>

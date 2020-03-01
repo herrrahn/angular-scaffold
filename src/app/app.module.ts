@@ -10,13 +10,18 @@ import {PersonnelDetailsComponent} from './home/personnel/personnel-details/pers
 import {CustomerModule} from './home/customer/customer.module';
 import {ConfirmComponent} from './home/dialogs/confirm/confirm.component';
 import {MatDialogModule} from '@angular/material';
+import {AuthService} from './auth/auth.service';
+import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {RequestInterceptor} from './auth/request.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PersonnelDetailsComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    AuthTesterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,12 @@ import {MatDialogModule} from '@angular/material';
     MatDialogModule
   ],
   entryComponents: [ConfirmComponent],
-  providers: [],
+  providers: [AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
