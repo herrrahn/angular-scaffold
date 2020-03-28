@@ -4,3 +4,6 @@
   <p><a routerLink="/personnel">Personnel</a></p>
   <p><a routerLink="/auth">Auth</a></p>
 </div>
+
+<button class="btn btn-primary" (click)="open()">Open Search</button>
+<app-search *ngIf="isVisible"></app-search>

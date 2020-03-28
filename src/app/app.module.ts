@@ -14,6 +14,8 @@ import {AuthService} from './auth/auth.service';
 import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RequestInterceptor} from './auth/request.interceptor';
+import { SearchComponent } from './home/dashboard/search/search.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,16 +23,18 @@ import {RequestInterceptor} from './auth/request.interceptor';
     DashboardComponent,
     PersonnelDetailsComponent,
     ConfirmComponent,
-    AuthTesterComponent
+    AuthTesterComponent,
+    SearchComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ClarityModule,
-    BrowserAnimationsModule,
-    CustomerModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ClarityModule,
+        BrowserAnimationsModule,
+        CustomerModule,
+        MatDialogModule,
+        FormsModule
+    ],
   entryComponents: [ConfirmComponent],
   providers: [AuthService,
     {
