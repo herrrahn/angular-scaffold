@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {PersonnelEntity} from './personnel.entity';
 import {Injectable} from '@angular/core';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 const API_URL = 'http://localhost:8080/personnel';
 
@@ -23,6 +24,12 @@ export class PersonnelService {
 
   addPersonnel(p: PersonnelEntity): Promise<PersonnelEntity> {
     return this.http.post<PersonnelEntity>(API_URL, p).toPromise();
+  }
+
+  addPersonnelO(p: PersonnelEntity): Observable<PersonnelEntity> {
+    return this.http.post<PersonnelEntity>(API_URL, p).pipe(
+      map( data => data),
+    );
   }
 
   delete(id: number): Promise<boolean> {

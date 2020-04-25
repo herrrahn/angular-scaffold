@@ -15,7 +15,9 @@ import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RequestInterceptor} from './auth/request.interceptor';
 import { SearchComponent } from './home/dashboard/search/search.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NavBarComponent } from './home/nav-bar/nav-bar.component';
+import { StringListComponent } from './components/string-list/string-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {FormsModule} from '@angular/forms';
     PersonnelDetailsComponent,
     ConfirmComponent,
     AuthTesterComponent,
-    SearchComponent
+    SearchComponent,
+    NavBarComponent,
+    StringListComponent
   ],
     imports: [
         BrowserModule,
@@ -33,7 +37,8 @@ import {FormsModule} from '@angular/forms';
         BrowserAnimationsModule,
         CustomerModule,
         MatDialogModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
   entryComponents: [ConfirmComponent],
   providers: [AuthService,

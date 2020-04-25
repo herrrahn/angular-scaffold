@@ -1,0 +1,77 @@
+<header class="header-6">
+  <div class="branding" style="min-width: 0">
+    <a href="..." class="nav-link">
+      <span class="title-web">web</span>
+      <span class="title-ecc">ECC</span>
+    </a>
+
+  </div>
+
+  <form class="search">
+    <label for="search_input">
+      <input id="search_input" style=" opacity: 1" type="text" placeholder="Suche">
+    </label>
+  </form>
+
+  <div class="header-nav">
+    <a href="..." class="nav-link" style=" opacity: 1; font-weight: normal"><span class="nav-text" style="font-weight: normal">Dashboard</span></a>
+<!--    <a href="..." class="nav-link"><span class="nav-text">Module 1</span></a>-->
+<!--    <a href="..." class="nav-link"><span class="nav-text">Module 2</span></a>-->
+
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-icon nav-btn text-left" style="width: 100px; margin-left: 24px; opacity: 1" clrDropdownTrigger aria-label="toggle settings menu">
+          <span>Lexicon</span>
+          <clr-icon shape="book"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+
+          <a href="..." clrDropdownItem>About</a>
+          <a href="..." clrDropdownItem>Preferences</a>
+          <a href="..." clrDropdownItem>Log out</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-icon nav-btn text-left" style="width: 125px; margin-left: 24px; opacity: 1"  clrDropdownTrigger aria-label="toggle settings menu">
+          <span>Baukasten</span>
+          <clr-icon shape="ruler-pencil"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="..." clrDropdownItem>About</a>
+          <a href="..." clrDropdownItem>Preferences</a>
+          <a href="..." clrDropdownItem>Log out</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </div>
+
+
+  <div class="header-actions" style="opacity: 1;">
+    <div class="header-actions">
+      <a href="..." class="nav-link nav-icon"  style="opacity: 1;" aria-label="settings">
+        <clr-icon shape="cog"></clr-icon>
+      </a>
+    </div>
+
+    <clr-dropdown>
+      <button class="nav-icon nav-btn text-left" style="width: 80px; margin-left: 24px; opacity: 1" clrDropdownTrigger aria-label="toggle settings menu">
+        <span>RAHN00</span>
+<!--        <clr-icon shape="logout"></clr-icon>-->
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="..." clrDropdownItem>About</a>
+        <a href="..." clrDropdownItem>Preferences</a>
+        <a href="..." clrDropdownItem>Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>

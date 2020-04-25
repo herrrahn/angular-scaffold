@@ -1,0 +1,28 @@
+<!--<form >-->
+<!--  <clr-input-container *ngFor="let t of text">-->
+<!--    <input clrInput [value]="t" autocomplete="off"-->
+<!--           style="width: 260px;"-->
+<!--           maxlength="30"-->
+<!--           (keydown)="write($event)"/>-->
+<!--  </clr-input-container>-->
+<!--</form>-->
+
+
+<form [formGroup] = "formGroup">
+  <div formArrayName="texts">
+    <div *ngFor="let text of texts.controls; index as idx" class="form-group">
+      <input clrInput [formControlName]="idx" autocomplete="off"
+             [id]="'line' + idx"
+             style="width: 260px;"
+             (keyup)="write(idx, $event)"
+             (ngModelChange)="changeText($event, idx)"
+      />
+    </div>
+  </div>
+</form>
+
+<br>
+<hr>
+<textarea cols="30">
+
+</textarea>
