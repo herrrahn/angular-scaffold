@@ -9,7 +9,7 @@ import {DashboardComponent} from './home/dashboard/dashboard.component';
 import {PersonnelDetailsComponent} from './home/personnel/personnel-details/personnel-details.component';
 import {CustomerModule} from './home/customer/customer.module';
 import {ConfirmComponent} from './home/dialogs/confirm/confirm.component';
-import {MatDialogModule} from '@angular/material';
+import {MatDialogModule, MatSortModule, MatTableModule} from '@angular/material';
 import {AuthService} from './auth/auth.service';
 import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -18,6 +18,8 @@ import { SearchComponent } from './home/dashboard/search/search.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavBarComponent } from './home/nav-bar/nav-bar.component';
 import { StringListComponent } from './components/string-list/string-list.component';
+import { DataGridComponent } from './components/data-grid/data-grid.component';
+import { DataGrid2Component } from './components/data-grid2/data-grid2.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { StringListComponent } from './components/string-list/string-list.compon
     AuthTesterComponent,
     SearchComponent,
     NavBarComponent,
-    StringListComponent
+    StringListComponent,
+    DataGridComponent,
+    DataGrid2Component
   ],
     imports: [
         BrowserModule,
@@ -38,7 +42,9 @@ import { StringListComponent } from './components/string-list/string-list.compon
         CustomerModule,
         MatDialogModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatTableModule,
+        MatSortModule
     ],
   entryComponents: [ConfirmComponent],
   providers: [AuthService,

@@ -1,0 +1,24 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" cdkDropListGroup>
+  <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
+    <mat-header-cell *matHeaderCellDef>
+      <div>
+        <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="background-color: rgba(165,255,159,0.49);  cursor: col-resize; padding: 5px"></span>
+      </div>
+      <div class="table-data-content" [id]="'header' + i" style="background-color: #00cccc">
+        <span style="cursor: pointer"> Long column name as hell or {{ column.field }} </span>
+      </div>
+      <div>
+        <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="background-color: aquamarine; cursor: col-resize; padding: 5px"></span>
+      </div>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row" >
+      <div class="table-data-content">
+        <span> {{ row[column.field] }}</span>
+      </div>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
