@@ -7,7 +7,7 @@ mat-cell,
 mat-footer-cell,
 mat-header-cell {
   width: 200px;
-  flex: none;
+  //flex: none;
   justify-content: center;
 }
 
@@ -65,7 +65,7 @@ td {
 
 table {
   width: 100%;
-  table-layout: fixed;
+  //table-layout: fixed;
 }
 
 th, td {

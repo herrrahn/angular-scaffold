@@ -1,32 +1,34 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort cdkDropListGroup>
-  <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
-    <mat-header-cell *matHeaderCellDef>
-      <div>
-        <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="cursor: col-resize; padding: 5px"></span>
-      </div>
-      <div class="table-data-content" [id]="'header' + i">
-        <span style="cursor: pointer" (click)="sortField(column.field)"> Long column name as hell or {{ column.field }} </span>
-        <span *ngIf="currentSort === column.field">
+<div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort cdkDropListGroup>
+    <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
+      <mat-header-cell *matHeaderCellDef>
+        <div>
+          <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="cursor: col-resize; padding: 5px"></span>
+        </div>
+        <div class="table-data-content" [id]="'header' + i">
+          <span style="cursor: pointer"
+                (click)="sortField(column.field)"> Long column name as hell or {{ column.field }} </span>
+          <span *ngIf="currentSort === column.field">
           <clr-icon shape="arrow" *ngIf="currentDirection === 'asc'"></clr-icon>
           <clr-icon shape="arrow" style="transform: rotate(180deg);" *ngIf="currentDirection === 'desc'"></clr-icon>
-<!--          <span *ngIf="currentDirection === 'asc'">A</span>-->
-<!--          <span *ngIf="currentDirection === 'desc'">D</span>-->
         </span>
-      </div>
-      <div>
+        </div>
+        <div>
         <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="cursor: col-resize; padding: 5px">
         </span>
-      </div>
-    </mat-header-cell>
+        </div>
+      </mat-header-cell>
 
-    <mat-cell *matCellDef="let row" >
-      <div class="table-data-content">
-        <span> {{ row[column.field] }}</span>
-      </div>
-    </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+      <mat-cell *matCellDef="let row">
+        <div class="table-data-content">
+          <span> {{ row[column.field] }}</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
+  </mat-table>
+</div>
 {{currentSort}}:{{currentDirection}}

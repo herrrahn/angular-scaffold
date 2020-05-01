@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {MatSort, MatTable, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
@@ -30,6 +30,8 @@ export class DataGridComponent implements OnInit, AfterViewInit {
   title = 'Material Table column Resize';
   @ViewChild(MatTable, {read: ElementRef, static: true}) private matTableRef: ElementRef;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   columns: any[] = [
     {field: 'position', width: 100,},
     {field: 'name', width: 350,},
@@ -57,6 +59,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.setDisplayedColumns();
   }
 
@@ -91,7 +94,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
     this.currentResizeIndex = index;
     this.pressed = true;
     this.startX = event.pageX;
-    this.startWidth = elementById.clientWidth;//event.target.clientWidth;
+    this.startWidth = elementById.clientWidth; // event.target.clientWidth;
     event.preventDefault();
     this.mouseMove(index);
   }

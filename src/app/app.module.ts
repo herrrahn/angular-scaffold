@@ -9,7 +9,7 @@ import {DashboardComponent} from './home/dashboard/dashboard.component';
 import {PersonnelDetailsComponent} from './home/personnel/personnel-details/personnel-details.component';
 import {CustomerModule} from './home/customer/customer.module';
 import {ConfirmComponent} from './home/dialogs/confirm/confirm.component';
-import {MatDialogModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatDialogModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {AuthService} from './auth/auth.service';
 import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -34,18 +34,19 @@ import { DataGrid2Component } from './components/data-grid2/data-grid2.component
     DataGridComponent,
     DataGrid2Component
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ClarityModule,
-        BrowserAnimationsModule,
-        CustomerModule,
-        MatDialogModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatTableModule,
-        MatSortModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ClarityModule,
+    BrowserAnimationsModule,
+    CustomerModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
+  ],
   entryComponents: [ConfirmComponent],
   providers: [AuthService,
     {
