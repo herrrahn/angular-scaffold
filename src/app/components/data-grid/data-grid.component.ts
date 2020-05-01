@@ -47,6 +47,9 @@ export class DataGridComponent implements OnInit, AfterViewInit {
   resizableMousemove: () => void;
   resizableMouseup: () => void;
 
+  currentSort = '';
+  currentDirection: 'asc' | 'desc';
+
   constructor(
     private renderer: Renderer2
   ) {
@@ -153,5 +156,28 @@ export class DataGridComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+  }
+
+  sortField(field: string) {
+    this.orderData(field);
+  }
+
+  orderData(id: string, start?: 'asc' | 'desc') {
+    const matSort = this.dataSource.sort;
+    const disableClear = false;
+
+    if (this.currentDirection === 'asc') {
+      this.currentDirection = 'desc';
+    } else {
+      this.currentDirection = 'asc';
+    }
+    start = this.currentDirection;
+
+    this.currentSort = id;
+
+    matSort.sort({id: null, start, disableClear});
+    matSort.sort({id, start, disableClear});
+
+    this.dataSource.sort = this.sort;
   }
 }
