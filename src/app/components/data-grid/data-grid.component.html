@@ -1,5 +1,5 @@
 <div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (click)="paging()" ></mat-paginator>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort cdkDropListGroup>
     <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
       <mat-header-cell *matHeaderCellDef>
@@ -28,7 +28,6 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
   </mat-table>
 </div>
 {{currentSort}}:{{currentDirection}}

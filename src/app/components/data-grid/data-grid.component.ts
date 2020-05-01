@@ -51,6 +51,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
 
   currentSort = '';
   currentDirection: 'asc' | 'desc';
+  loading = false;
 
   constructor(
     private renderer: Renderer2
@@ -182,5 +183,11 @@ export class DataGridComponent implements OnInit, AfterViewInit {
     matSort.sort({id, start, disableClear});
 
     this.dataSource.sort = this.sort;
+
+    this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+  }
+
+  paging() {
+    this.setTableResize(this.matTableRef.nativeElement.clientWidth);
   }
 }

@@ -9,17 +9,18 @@ import {DashboardComponent} from './home/dashboard/dashboard.component';
 import {PersonnelDetailsComponent} from './home/personnel/personnel-details/personnel-details.component';
 import {CustomerModule} from './home/customer/customer.module';
 import {ConfirmComponent} from './home/dialogs/confirm/confirm.component';
-import {MatDialogModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatDialogModule, MatPaginatorIntl, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {AuthService} from './auth/auth.service';
-import { AuthTesterComponent } from './home/auth-tester/auth-tester.component';
+import {AuthTesterComponent} from './home/auth-tester/auth-tester.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RequestInterceptor} from './auth/request.interceptor';
-import { SearchComponent } from './home/dashboard/search/search.component';
+import {SearchComponent} from './home/dashboard/search/search.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NavBarComponent } from './home/nav-bar/nav-bar.component';
-import { StringListComponent } from './components/string-list/string-list.component';
-import { DataGridComponent } from './components/data-grid/data-grid.component';
-import { DataGrid2Component } from './components/data-grid2/data-grid2.component';
+import {NavBarComponent} from './home/nav-bar/nav-bar.component';
+import {StringListComponent} from './components/string-list/string-list.component';
+import {DataGridComponent} from './components/data-grid/data-grid.component';
+import {DataGrid2Component} from './components/data-grid2/data-grid2.component';
+import {CustomPaginator} from './components/data-grid/custom.paginator';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { DataGrid2Component } from './components/data-grid2/data-grid2.component
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true
-    }],
+    },
+    {provide: MatPaginatorIntl, useValue: CustomPaginator()}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
