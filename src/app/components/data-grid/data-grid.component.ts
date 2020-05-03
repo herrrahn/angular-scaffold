@@ -27,17 +27,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./data-grid.component.scss']
 })
 export class DataGridComponent implements OnInit, AfterViewInit {
-  title = 'Material Table column Resize';
+  title = 'RRR GRID';
   @ViewChild(MatTable, {read: ElementRef, static: true}) private matTableRef: ElementRef;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   columns: any[] = [
-    {field: 'position', width: 100,},
-    {field: 'name', width: 350,},
-    {field: 'weight', width: 250,},
-    {field: 'symbol', width: 100,}
+    {field: 'position', width: 100, visible: true, order: 0},
+    {field: 'name', width: 350, visible: true, order: 1},
+    {field: 'weight', width: 250, visible: true, order: 2},
+    {field: 'symbol', width: 100, visible: true, order: 3}
   ];
+  originalColumns = this.columns;
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -51,7 +52,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
 
   currentSort = '';
   currentDirection: 'asc' | 'desc';
-  loading = false;
+  showColsSelector = false;
 
   constructor(
     private renderer: Renderer2
@@ -73,6 +74,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
     this.columns.forEach((column) => {
       totWidth += column.width;
     });
+    console.log('T:', totWidth);
     const scale = (tableWidth - 5) / totWidth;
     this.columns.forEach((column) => {
       column.width *= scale;
@@ -83,19 +85,19 @@ export class DataGridComponent implements OnInit, AfterViewInit {
   setDisplayedColumns() {
     this.columns.forEach((column, index) => {
       column.index = index;
-      this.displayedColumns[index] = column.field;
+      if (column.visible) {
+        this.displayedColumns[index] = column.field;
+      }
     });
   }
 
   onResizeColumn(event: any, index: number, header) {
     const elementById = document.getElementById(header);
-    console.log(elementById.clientWidth);
-    // console.log(event);
     this.checkResizing(event, index);
     this.currentResizeIndex = index;
     this.pressed = true;
     this.startX = event.pageX;
-    this.startWidth = elementById.clientWidth; // event.target.clientWidth;
+    this.startWidth = elementById.clientWidth;
     event.preventDefault();
     this.mouseMove(index);
   }
@@ -189,5 +191,42 @@ export class DataGridComponent implements OnInit, AfterViewInit {
 
   paging() {
     this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+  }
+
+  configureCols(field: any) {
+    const goingVisible = !field.visible;
+    this.columns = this.originalColumns.filter(o => {
+      return o.visible === true;
+    });
+    if (!goingVisible) {
+      this.columns = this.columns.filter(c => c.field !== field.field);
+    } else {
+      this.columns.push({field: field.field, width: field.width, visible: true, order: field.order});
+    }
+
+    this.columns.sort((a, b) => {
+      if (a.order > b.order) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    setTimeout(() => {
+      this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+    });
+  }
+
+  getDisplayedColumns(): any[] {
+    return this.columns
+      .filter(cd => cd.visible)
+      .map(cd => cd.field);
+  }
+
+  selectAll() {
+    this.originalColumns.forEach( o => o.visible = true);
+    this.columns = this.originalColumns;
+    setTimeout(() => {
+      this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+    });
   }
 }
