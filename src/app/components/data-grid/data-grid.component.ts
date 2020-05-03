@@ -189,8 +189,14 @@ export class DataGridComponent implements OnInit, AfterViewInit {
     this.setTableResize(this.matTableRef.nativeElement.clientWidth);
   }
 
-  paging() {
-    this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+  paging(withTimer = false) {
+    if (withTimer) {
+      setTimeout(() => {
+        this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+      });
+    } else {
+      this.setTableResize(this.matTableRef.nativeElement.clientWidth);
+    }
   }
 
   configureCols(field: any) {
@@ -223,7 +229,7 @@ export class DataGridComponent implements OnInit, AfterViewInit {
   }
 
   selectAll() {
-    this.originalColumns.forEach( o => o.visible = true);
+    this.originalColumns.forEach(o => o.visible = true);
     this.columns = this.originalColumns;
     setTimeout(() => {
       this.setTableResize(this.matTableRef.nativeElement.clientWidth);

@@ -1,7 +1,7 @@
 <div>
   <div style="display: flex; justify-content: flex-end; align-items: center">
     <clr-icon shape="view-columns" (click)="showColsSelector = !showColsSelector" style="cursor: pointer"></clr-icon>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (click)="paging()"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="paging(true)" (click)="paging()"></mat-paginator>
   </div>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort cdkDropListGroup>
     <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
